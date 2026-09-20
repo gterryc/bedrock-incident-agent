@@ -1,0 +1,17 @@
+# Copia este archivo a terraform.tfvars y completa los valores.
+#
+#   cp terraform.tfvars.example terraform.tfvars
+
+aws_region         = "us-east-1"
+notification_email = "tu-email@ejemplo.com"
+
+# Incoming Webhook de Slack. Dejalo vacio si no vas a usar Slack:
+# la Lambda notify_slack loguea el mensaje y no falla.
+slack_webhook_url = ""
+
+# Interruptor de la demo. Se deja en true en el deploy inicial.
+allow_healthcheck = true
+
+# Modelo base del agente. Ver "Troubleshooting" en el README si tu cuenta
+# no tiene habilitado el acceso a este modelo.
+bedrock_model_id = "us.anthropic.claude-sonnet-4-5-20250929-v1:0"

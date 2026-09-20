@@ -1,10 +1,12 @@
 locals {
+  name_prefix = var.project_name
+
   common_tags = {
     Owner       = "George Terry"
-    Environment = "Prod"
-    Project     = ""
-    Empresa     = ""
+    Environment = "Demo"
+    Project     = "bedrock-incident-agent"
+    Empresa     = "AWS Community Day"
     Deployment  = "Terraform"
-    Domain      = ""
+    Domain      = "GenAI/Observability"
   }
 }

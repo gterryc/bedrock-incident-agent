@@ -38,3 +38,18 @@ terraform.rc
 
 # Infracost files
 *.binary
+
+# Zips de Lambda generados por data.archive_file
+.build/
+*.zip
+
+# Archivo de variables real (contiene el email y el webhook de Slack)
+terraform.tfvars
+
+# Python
+__pycache__/
+*.pyc
+
+# AWS CLI instalado dentro del repo por error (no es parte del proyecto)
+aws/
+awscliv2.zip
