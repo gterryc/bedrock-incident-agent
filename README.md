@@ -91,6 +91,7 @@ al resolver que funcion ejecutar.
 │   └── notify_slack/             # SNS → webhook de Slack
 └── scripts/
     ├── check_model_access.sh     # comprueba que el modelo responde, antes de desplegar
+    ├── test_slack.sh             # prueba el webhook de Slack sin disparar la demo
     ├── break_sg.sh               # rompe el ambiente (el momento de la demo)
     ├── restore_sg.sh             # lo arregla, para volver a ensayar
     ├── check_health.sh           # estado de targets y alarma
@@ -249,6 +250,43 @@ aws lambda invoke \
 
 `invoke_agent` acepta `{"prompt": "..."}` para invocaciones manuales, sin necesidad de un evento
 de EventBridge.
+
+## 💬 Configurar Slack (opcional)
+
+Se usa un **Incoming Webhook**, no un bot token: es lo mas simple y no hay scopes que administrar.
+El webhook queda atado a un canal concreto en el momento de instalarlo.
+
+1. Entra a <https://api.slack.com/apps> → **Create New App** → **From scratch**.
+   Ponle un nombre (por ejemplo `Bedrock Incident Agent`) y elige tu workspace.
+2. En el menu lateral → **Incoming Webhooks** → activa **Activate Incoming Webhooks**.
+3. Abajo → **Add New Webhook to Workspace** → elige el canal → **Allow**.
+4. Copia la URL que queda (`https://hooks.slack.com/services/T.../B.../...`).
+
+> Si el canal es **privado**, primero invita la app desde el canal con `/invite @Bedrock Incident Agent`,
+> o no aparecera en la lista del paso 3.
+
+Esa URL **es la credencial**: quien la tenga puede publicar en ese canal. No se comparte ni se
+versiona. Va en `terraform.tfvars`, que esta en `.gitignore`:
+
+```hcl
+slack_webhook_url = "https://hooks.slack.com/services/T000/B000/xxxxxxxx"
+```
+
+```bash
+terraform apply
+./scripts/test_slack.sh     # verifica el envio sin disparar la demo ni mandar emails
+```
+
+`test_slack.sh` invoca la Lambda `notify_slack` con un evento SNS sintetico. Si ves el mensaje en el
+canal, esta listo.
+
+**Costo: cero, de los dos lados.** Los Incoming Webhooks de Slack son gratuitos en todos los planes,
+incluido el Free. Del lado de AWS, el envio son invocaciones de Lambda y publicaciones de SNS: el
+free tier cubre 1M de invocaciones y 1M de publicaciones al mes, y una demo usa un punado. Lo unico
+con costo real del proyecto sigue siendo el ALB.
+
+**Si no configuras Slack no se rompe nada**: con `slack_webhook_url` vacio la Lambda loguea el
+mensaje y termina bien, y la notificacion por email llega igual.
 
 ## 🧹 Cleanup
 
