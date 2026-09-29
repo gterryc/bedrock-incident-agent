@@ -61,9 +61,11 @@ awscliv2.zip
 # Plantilla oficial del evento: no es material propio, no corresponde redistribuirla.
 presentacion/template/
 
-# Decks generados. Con el video de la demo embebido superan los 100 MB, que es el
-# limite duro de GitHub. Al repo sube el PDF exportado (presentacion/slides.pdf).
-presentacion/build/
+# Los entregables finales (PDF y PPTX) SI se versionan: el video de la demo se
+# maneja por separado, asi que el deck se mantiene liviano. Fuera quedan los
+# archivos de trabajo intermedios.
+presentacion/build/_*
+presentacion/build/muestra-*
 
 # QR de feedback de Sessionize: es especifico de esta sesion, no le sirve a nadie mas.
 presentacion/assets/*feedback-code.png

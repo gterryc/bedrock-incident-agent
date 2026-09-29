@@ -13,6 +13,29 @@ el agente investiga con sus herramientas, y el diagnostico llega por email y por
 > `harness` (modelo + system prompt + herramientas) y un `gateway` que expone las Lambdas como
 > herramientas MCP. Las Lambdas de diagnostico son las mismas; solo cambio el envelope de entrada.
 
+## 🎤 La charla
+
+Este repo es el material de una charla del **AWS Community Day Peru 2026** (3 de octubre,
+track Generative AI & ML, nivel 300):
+
+> **Diagnosticando incidentes en AWS con Bedrock Agents**
+> George Terry · Cloud Engineer
+
+| Material | |
+|---|---|
+| 📑 Slides en PDF | [`presentacion/build/AWSCommunityDayPeru2026_GeorgeTerry.pdf`](presentacion/build/AWSCommunityDayPeru2026_GeorgeTerry.pdf) |
+| 📊 Slides en PowerPoint | [`presentacion/build/AWSCommunityDayPeru2026_GeorgeTerry.pptx`](presentacion/build/AWSCommunityDayPeru2026_GeorgeTerry.pptx) |
+| 📐 Diagrama de arquitectura | [`presentacion/incidet_analyzer.drawio.png`](presentacion/incidet_analyzer.drawio.png) · [fuente editable](presentacion/incidet_analyzer.drawio) |
+| 🗒️ Guion del orador | [`presentacion/guion.md`](presentacion/guion.md) |
+
+El video de la demo se maneja por separado y no esta embebido en el deck: la charla lo
+reproduce desde un archivo local. El guion de grabacion esta en
+[`presentacion/guion-video-demo.md`](presentacion/guion-video-demo.md).
+
+**Si llegaste hasta aca escaneando el QR de la sala:** lo que sigue es todo lo que hace
+falta para levantar esta demo en tu propia cuenta. El deploy completo cuesta menos de
+1 USD al dia. Segui con la seccion de **Requisitos**.
+
 ## 📐 Arquitectura desplegada
 
 ```
@@ -89,13 +112,19 @@ al resolver que funcion ejecutar.
 │   ├── tool_cloudwatch_logs/
 │   ├── notify/                   # publica el diagnostico en SNS
 │   └── notify_slack/             # SNS → webhook de Slack
-└── scripts/
-    ├── check_model_access.sh     # comprueba que el modelo responde, antes de desplegar
-    ├── test_slack.sh             # prueba el webhook de Slack sin disparar la demo
-    ├── break_sg.sh               # rompe el ambiente (el momento de la demo)
-    ├── restore_sg.sh             # lo arregla, para volver a ensayar
-    ├── check_health.sh           # estado de targets y alarma
-    └── tail_trace.sh             # sigue el razonamiento del agente en terminal
+├── scripts/
+│   ├── check_model_access.sh     # comprueba que el modelo responde, antes de desplegar
+│   ├── test_slack.sh             # prueba el webhook de Slack sin disparar la demo
+│   ├── break_sg.sh               # rompe el ambiente (el momento de la demo)
+│   ├── restore_sg.sh             # lo arregla, para volver a ensayar
+│   ├── check_health.sh           # estado de targets y alarma
+│   └── tail_trace.sh             # sigue el razonamiento del agente en terminal
+└── presentacion/                 # material de la charla
+    ├── guion.md                  # guion del orador, slide por slide
+    ├── guion-video-demo.md       # shot list para grabar el video de la demo
+    ├── incidet_analyzer.drawio   # diagrama de arquitectura (fuente y PNG)
+    ├── assets/                   # codigos QR
+    └── build/                    # slides en PDF y PPTX
 ```
 
 ## ⚙️ Requisitos
