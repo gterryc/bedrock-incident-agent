@@ -26,11 +26,9 @@ track Generative AI & ML, nivel 300):
 | 📑 Slides en PDF | [`presentacion/build/AWSCommunityDayPeru2026_GeorgeTerry.pdf`](presentacion/build/AWSCommunityDayPeru2026_GeorgeTerry.pdf) |
 | 📊 Slides en PowerPoint | [`presentacion/build/AWSCommunityDayPeru2026_GeorgeTerry.pptx`](presentacion/build/AWSCommunityDayPeru2026_GeorgeTerry.pptx) |
 | 📐 Diagrama de arquitectura | [`presentacion/incidet_analyzer.drawio.png`](presentacion/incidet_analyzer.drawio.png) · [fuente editable](presentacion/incidet_analyzer.drawio) |
-| 🗒️ Guion del orador | [`presentacion/guion.md`](presentacion/guion.md) |
 
 El video de la demo se maneja por separado y no esta embebido en el deck: la charla lo
-reproduce desde un archivo local. El guion de grabacion esta en
-[`presentacion/guion-video-demo.md`](presentacion/guion-video-demo.md).
+reproduce desde un archivo local.
 
 **Si llegaste hasta aca escaneando el QR de la sala:** lo que sigue es todo lo que hace
 falta para levantar esta demo en tu propia cuenta. El deploy completo cuesta menos de
@@ -120,8 +118,6 @@ al resolver que funcion ejecutar.
 │   ├── check_health.sh           # estado de targets y alarma
 │   └── tail_trace.sh             # sigue el razonamiento del agente en terminal
 └── presentacion/                 # material de la charla
-    ├── guion.md                  # guion del orador, slide por slide
-    ├── guion-video-demo.md       # shot list para grabar el video de la demo
     ├── incidet_analyzer.drawio   # diagrama de arquitectura (fuente y PNG)
     ├── assets/                   # codigos QR
     └── build/                    # slides en PDF y PPTX

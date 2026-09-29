@@ -69,3 +69,7 @@ presentacion/build/muestra-*
 
 # QR de feedback de Sessionize: es especifico de esta sesion, no le sirve a nadie mas.
 presentacion/assets/*feedback-code.png
+
+# Guiones del orador: material personal, se mantienen solo en local.
+presentacion/guion.md
+presentacion/guion-video-demo.md
